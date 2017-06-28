@@ -10,6 +10,7 @@ app/storage/
 public/storage
 public/hot
 storage/*.key
+.env.example
 .env.*.php
 .env.php
 .env
@@ -18,3 +19,7 @@ Homestead.json
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
+
+# git 
+.gitattributes
+.gitignore
