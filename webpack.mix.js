@@ -14,6 +14,7 @@ const mix = require('laravel-mix').mix;
 mix
 .copy('node_modules/bootstrap-v4-dev/dist/css/bootstrap.min.css', 'resources/assets/css/bootstrap.min.css')
 .copy('node_modules/font-awesome/css/font-awesome.min.css', 'resources/assets/css/font-awesome.min.css')
+.copy('node_modules/font-awesome/fonts/**', 'public/fonts')
 .js([
     'resources/assets/js/app.js',
     'node_modules/bootstrap-v4-dev/dist/js/bootstrap.min.js'
