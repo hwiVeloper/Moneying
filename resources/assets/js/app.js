@@ -20,3 +20,5 @@
 // const app = new Vue({
 //     el: '#app'
 // });
+
+window.$ = window.jQuery = require('jquery');
