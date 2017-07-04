@@ -20,6 +20,3 @@
 // const app = new Vue({
 //     el: '#app'
 // });
-
-window.$ = window.jQuery = require('jquery')
-window.Tether = require('tether')
