@@ -22,7 +22,6 @@ Homestead.json
 
 # git
 .gitattributes
-.gitignore
 
 # Atom
 .ftpconfig

@@ -28,9 +28,14 @@ mix
 .styles([
     'resources/assets/css/bootstrap.min.css',
     'resources/assets/css/font-awesome.min.css',
-    'resources/assets/css/font.css'
+    'resources/assets/css/font.css',
+    'resources/assets/css/navigation.css'
 ], 'public/css/app.css')
 .version()
 .browserSync({
     proxy: 'hwi.mismaven.kr'
 });
+
+// if (mix.inProduction()) {
+//     mix.version();
+// }

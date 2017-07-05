@@ -1,0 +1,25 @@
+/**
+ * register_login.css
+ *
+ * 회원가입, 로그인 폼에서 쓰이는 style
+ */
+.layer {
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    position: absolute;
+    top: 45vh;
+    left: 50%;
+}
+
+.login-title, .register-title {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.has-error {
+    color:red;
+}
+
+label.form-label {
+    font-weight: bold;
+}
