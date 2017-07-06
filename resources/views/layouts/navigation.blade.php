@@ -42,15 +42,15 @@ $( document ).ready(function() {
     <ul class="navbar-side reveal" id="navbarSide">
         @if (!Auth::guest())
         <li id="profile" class="navbar-side-item">
-            <img src="https://github.com/hwiVeloper.png" alt="" style="max-height:100px">
+            <img src="{{ Auth::user()->avatar }}" alt="" style="max-height:100px">
             <p class="profile-name">{{ Auth::user()->name }}</p>
             <p class="profile-email">{{ Auth::user()->email }}</p>
             <i id="sidebar-close" class="fa fa-times fa-2x"></i>
         </li>
-        <li class="navbar-side-item"><a href="#"><i class="fa fa-home      fa-2x">&nbsp;</i>홈</a></li>
-        <li class="navbar-side-item"><a href="#"><i class="fa fa-dashboard fa-2x">&nbsp;</i>요약</a></li>
-        <li class="navbar-side-item"><a href="#"><i class="fa fa-pencil    fa-2x">&nbsp;</i>쓰기</a></li>
-        <li class="navbar-side-item"><a href="#"><i class="fa fa-cog       fa-2x">&nbsp;</i>설정</a></li>
+        <a href="#"><li class="navbar-side-item"><i class="fa fa-home      fa-2x">&nbsp;</i>홈</li></a>
+        <a href="#"><li class="navbar-side-item"><i class="fa fa-dashboard fa-2x">&nbsp;</i>요약</li></a>
+        <a href="#"><li class="navbar-side-item"><i class="fa fa-pencil    fa-2x">&nbsp;</i>쓰기</li></a>
+        <a href="#"><li class="navbar-side-item"><i class="fa fa-cog       fa-2x">&nbsp;</i>설정</li></a>
 
         <a id="logout-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-1x">&nbsp;</i>로그아웃</a>

@@ -41,7 +41,7 @@
                 <h3>Moneying</h3>
             </div>
             {{-- Form Start --}}
-            <form autocomplete="off" method="post" action="">
+            <!--<form autocomplete="off" method="post" action="">
                 {{ csrf_field() }}
                 {{-- email --}}
                 <div class= "form-group">
@@ -69,7 +69,7 @@
                 </div>
                 {{-- Social login 들어갈 부분 --}}
             </form>
-            <hr style="margin-top: 3em; margin-bottom: 3em;">
+            <hr style="margin-top: 3em; margin-bottom: 3em;">-->
             <a href="social/github" class="btn btn-secondary btn-block"><i class="fa fa-github"></i> 깃허브로 로그인</a>
             <a href="social/google" class="btn btn-danger btn-block"><i class="fa fa-google"></i> 구글로 로그인</a>
             <a href="social/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> 페이스북으로 로그인</a>

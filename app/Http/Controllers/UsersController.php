@@ -98,7 +98,7 @@ class UsersController extends Controller
 
         $user->update([
             'name' => $request->input('name'),
-            'password' => bcrypt($request->input('password')),
+            'avatar' => $request->input('avatar')
         ]);
 
         auth()->login($user);

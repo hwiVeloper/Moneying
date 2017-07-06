@@ -35,7 +35,7 @@ class SocialController extends Controller
             ?: \App\User::create([
                 'name' => $user->getName() ?: 'unknown',
                 'email' => $user->getEmail(),
-                'activated' => 1,
+                'avatar' => $user->getAvatar()
             ]);
 
         auth()->login($user);
