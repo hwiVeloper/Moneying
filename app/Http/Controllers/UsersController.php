@@ -13,7 +13,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -34,7 +34,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $socialUser = \App\User::whereEmail($request->input('email'))->whereNull('password')->first();
+
+        if ($socialUser) {
+            return $this->updateSocialAccount($request, $socialUser);
+        }
+
+        return $this->createNativeAccount($request);
     }
 
     /**
@@ -80,5 +86,21 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function updateSocialAccount(Request $request, \App\User $user)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|confirmed|mix:6',
+        ]);
+
+        $user->update([
+            'name' => $request->input('name'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        auth()->login($user);
     }
 }

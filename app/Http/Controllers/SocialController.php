@@ -39,8 +39,7 @@ class SocialController extends Controller
             ]);
 
         auth()->login($user);
-        // flash(auth()->user()->name. '님 환영합니다.');
 
-        return redirect('/');
+        return redirect('/')->with('flash_message', auth()->user()->name . '님 환영합니다.');
     }
 }

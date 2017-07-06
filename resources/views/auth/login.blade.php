@@ -27,7 +27,7 @@
         @include('layouts.flash')
         <div class="layer col-md-4 col-offset-md-4">
             <div class="login-title">
-                {{-- <h3>Moneying으로 가계부를 시작하세요 !</h3> --}}
+                <h3>Moneying</h3>
             </div>
             {{-- Form Start --}}
             <form autocomplete="off" method="post" action="">
@@ -58,6 +58,10 @@
                 </div>
                 {{-- Social login 들어갈 부분 --}}
             </form>
+            <hr style="margin-top: 3em; margin-bottom: 3em;">
+            <a href="social/github" class="btn btn-secondary btn-block"><i class="fa fa-github"></i> 깃허브로 로그인</a>
+            <a href="social/google" class="btn btn-outline-danger btn-block"><i class="fa fa-google"></i> 구글로 로그인</a>
+            <a href="social/facebook" class="btn btn-outline-primary btn-block"><i class="fa fa-facebook"></i> 페이스북으로 로그인</a>
         </div>
     </div>
 </body>
