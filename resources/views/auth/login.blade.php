@@ -24,6 +24,7 @@
 </head>
 <body>
     <div class="container-fluid">
+        @include('layouts.flash')
         <div class="layer col-md-4 col-offset-md-4">
             <div class="login-title">
                 {{-- <h3>Moneying으로 가계부를 시작하세요 !</h3> --}}

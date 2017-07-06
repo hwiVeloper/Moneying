@@ -4,7 +4,7 @@
 
 @section('contents')
     <div class="page-header">
-        <h1>Welcome! {{ Auth::user()->name }}</h1>
+        <h1>Welcome test</h1>
     </div>
     <hr>
 @endsection

@@ -29,7 +29,8 @@ mix
     'resources/assets/css/bootstrap.min.css',
     'resources/assets/css/font-awesome.min.css',
     'resources/assets/css/font.css',
-    'resources/assets/css/navigation.css'
+    'resources/assets/css/navigation.css',
+    'resources/assets/css/register_login.css'
 ], 'public/css/app.css')
 .version()
 .browserSync({

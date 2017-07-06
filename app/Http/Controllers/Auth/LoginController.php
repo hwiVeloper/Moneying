@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -38,5 +39,11 @@ class LoginController extends Controller
 
     public function showLoginForm() {
         return view('auth/login');
+    }
+
+    public function logout() {
+        auth()->logout();
+
+        return redirect('login')->with('flash_message', '로그아웃 되었습니다.');
     }
 }

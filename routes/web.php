@@ -26,3 +26,15 @@ Route::middleware('guest')->group(function () {
 Route::resource('users', 'UsersController');
 
 Auth::routes();
+
+/**
+ * Socialite
+ */
+Route::get('social/{provider}', [
+    'as'   => 'social.login',
+    'uses' => 'SocialController@execute',
+]);
+Route::get('social/{provider}/callback', [
+    'as'   => 'social.callback',
+    'uses' => 'SocialController@handleProviderCallback',
+]);
