@@ -21,8 +21,19 @@
 
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}" />
+    <style media="screen">
+    html, body {
+        width: 100%;
+        height:100%;
+        overflow:hidden;
+    }
+    </style>
 </head>
-<body>
+<body id="login-page">
+    <video id="bg-video" preload="auto" autoplay="true" loop="loop" volume="0" poster="pencil_down.jpg">
+        <source src="video/pencil_down.mp4" type="video/mp4" />
+        <source src="video/pencil_down.webm" type="video/webm" />
+    </video>
     <div class="container-fluid">
         @include('layouts.flash')
         <div class="layer col-md-4 col-offset-md-4">
@@ -60,8 +71,8 @@
             </form>
             <hr style="margin-top: 3em; margin-bottom: 3em;">
             <a href="social/github" class="btn btn-secondary btn-block"><i class="fa fa-github"></i> 깃허브로 로그인</a>
-            <a href="social/google" class="btn btn-outline-danger btn-block"><i class="fa fa-google"></i> 구글로 로그인</a>
-            <a href="social/facebook" class="btn btn-outline-primary btn-block"><i class="fa fa-facebook"></i> 페이스북으로 로그인</a>
+            <a href="social/google" class="btn btn-danger btn-block"><i class="fa fa-google"></i> 구글로 로그인</a>
+            <a href="social/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> 페이스북으로 로그인</a>
         </div>
     </div>
 </body>
