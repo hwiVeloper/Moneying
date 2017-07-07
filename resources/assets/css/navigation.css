@@ -33,17 +33,34 @@ hr {
     left: 0;
     padding: 0;
     list-style: none;
-    border-left: 2px solid #ccc;
-    background-color: #f7f7f9;
+    border-left: 0px solid;
+    background-color: #333;
     overflow-y: scroll;
     z-index: 1000;
+
+    color:#eee;
 }
 
 .navbar-side-item {
-    padding: 1.5rem 1rem;
+    padding: 1.2rem 1rem;
     margin: 0;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #666;
 }
+
+.navbar-side-link {
+    color: #eee;
+    text-decoration: none!important;
+}
+
+.navbar-side-link > .navbar-side-item:hover {
+    color: #fff;
+    background-color: #0094ff;
+}
+
+.navbar-side-item .is-active {
+
+}
+
 
 .side-link {
     padding-left: 2rem;
@@ -95,3 +112,24 @@ hr {
 @media (max-width: 575px)  { .navbar-side { min-width: 300px; } }
 @media (max-width: 767px)  { .navbar-side { min-width: 300px; } }
 @media (max-width: 991px)  { .navbar-side { min-width: 300px; } }
+
+#logout-btn {
+    position: absolute;
+    display: inline-block;
+    bottom: 0;
+    left: 0;
+    padding-left: 0.5em;
+    color: #eee;
+}
+
+/* Sticky Top Navigation */
+.navbar-inverse .navbar-toggler {
+    border-color: #fff;
+    border-width: 1.5px;
+    padding: 0.5em 0.75em;
+    cursor: pointer;
+}
+
+.bg-moneying {
+    background-color: #0094ff;
+}

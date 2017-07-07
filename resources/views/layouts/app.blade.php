@@ -6,6 +6,9 @@
 <div class="container-fluid">
     @include('layouts.flash')
 
+    {{-- 공백 --}}
+    <div style="margin-top:1em;"></div>
+
     @yield('contents')
 </div>
 

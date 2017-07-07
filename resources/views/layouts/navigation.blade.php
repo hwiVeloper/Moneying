@@ -23,20 +23,9 @@ $( document ).ready(function() {
 });
 </script>
 
-<style media="screen">
-    #logout-btn {
-        position: absolute;
-        display: inline-block;
-        bottom: 0;
-        left: 0;
-        margin-left: 1em;
-        margin-bottom: 1em;
-    }
-</style>
-
-<nav class="navbar sticky-top navbar-light bg-faded" role="navigation">
+<nav class="navbar sticky-top navbar-inverse bg-moneying" role="navigation">
     <button class="navbar-toggler" id="navbarSideButton" type="button">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa fa-bars"></i>
     </button>
     <!-- 사이드바 내용 시작 -->
     <ul class="navbar-side reveal" id="navbarSide">
@@ -47,13 +36,13 @@ $( document ).ready(function() {
             <p class="profile-email">{{ Auth::user()->email }}</p>
             <i id="sidebar-close" class="fa fa-times fa-2x"></i>
         </li>
-        <a href="#"><li class="navbar-side-item"><i class="fa fa-home      fa-2x">&nbsp;</i>홈</li></a>
-        <a href="#"><li class="navbar-side-item"><i class="fa fa-dashboard fa-2x">&nbsp;</i>요약</li></a>
-        <a href="#"><li class="navbar-side-item"><i class="fa fa-pencil    fa-2x">&nbsp;</i>쓰기</li></a>
-        <a href="#"><li class="navbar-side-item"><i class="fa fa-cog       fa-2x">&nbsp;</i>설정</li></a>
+        <a class="navbar-side-link" href="#"><li class="navbar-side-item"><i class="fa fa-home      fa-lg fa-fw"></i>&nbsp;홈</li></a>
+        <a class="navbar-side-link" href="#"><li class="navbar-side-item"><i class="fa fa-dashboard fa-lg fa-fw"></i>&nbsp;요약</li></a>
+        <a class="navbar-side-link" href="#"><li class="navbar-side-item"><i class="fa fa-pencil    fa-lg fa-fw"></i>&nbsp;쓰기</li></a>
+        <a class="navbar-side-link" href="#"><li class="navbar-side-item"><i class="fa fa-cog       fa-lg fa-fw"></i>&nbsp;설정</li></a>
 
         <a id="logout-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-1x">&nbsp;</i>로그아웃</a>
+            document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw">&nbsp;</i>로그아웃</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
