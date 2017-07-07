@@ -11,21 +11,29 @@
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('index');
-    });
+/* Index  */
+Route::get('/', function () {
+    return redirect(route('accounts.index'));
 });
 
+/* Auth */
+Auth::routes();
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('account.index');
+    });
+});
 Route::middleware('guest')->group(function () {
     Route::get('login', function() {
         return view('login');
     });
 });
 
+/* UsersController */
 Route::resource('users', 'UsersController');
 
-Auth::routes();
+/* AccountsController */
+Route::resource('accounts', 'AccountsController');
 
 /**
  * Socialite
