@@ -40,8 +40,9 @@
             <div class="login-title">
                 <h3>Moneying</h3>
             </div>
+            <!--
             {{-- Form Start --}}
-            <!--<form autocomplete="off" method="post" action="">
+            <form autocomplete="off" method="post" action="">
                 {{ csrf_field() }}
                 {{-- email --}}
                 <div class= "form-group">

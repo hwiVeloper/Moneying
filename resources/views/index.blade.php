@@ -7,4 +7,4 @@
         <h1>Welcome test</h1>
     </div>
     <hr>
-@endsection
+@stop

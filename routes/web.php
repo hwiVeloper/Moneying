@@ -16,6 +16,10 @@ Route::get('/', function () {
     return redirect(route('accounts.index'));
 });
 
+// Route::get('login', function() [
+//     return view('auth.login')
+// ]);
+
 /* Auth */
 Auth::routes();
 Route::middleware('auth')->group(function () {
@@ -23,17 +27,13 @@ Route::middleware('auth')->group(function () {
         return view('account.index');
     });
 });
-Route::middleware('guest')->group(function () {
-    Route::get('login', function() {
-        return view('login');
-    });
-});
 
 /* UsersController */
 Route::resource('users', 'UsersController');
 
 /* AccountsController */
-Route::resource('accounts', 'AccountsController');
+// Route::resource('accounts', 'AccountsController');
+Route::resource('accounts', 'AccountsController', ['middleware' => ['web', 'auth']]);
 
 /**
  * Socialite
