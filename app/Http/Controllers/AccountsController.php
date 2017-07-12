@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Auth;
+use Auth;
 use Calendar;
 
 class AccountsController extends Controller
@@ -63,8 +63,15 @@ class AccountsController extends Controller
 
 
         $accounts = \App\Account::where('date', $year.'-'.$month.'-')->get();
+        $assets = \App\Asset::where('user_id', Auth::user()->id)->get();
+        $asset_count = \App\Asset::where('user_id', Auth::user()->id)->count();
 
-        return view('account.index', compact('calendar', 'accounts'));
+        return view('account.index', compact(
+            'calendar',
+            'accounts',
+            'assets',
+            'asset_count'
+        ));
     }
 
     /**

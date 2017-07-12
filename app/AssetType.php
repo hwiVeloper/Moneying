@@ -6,11 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AssetType extends Model
 {
-    protected $table = 'asset_type';
-
-    protected $fillable = [
-        'name'
-    ];
+    protected $table = 'asset_types';
 
     public function assets() {
         return $this->hasMany(Asset::class);

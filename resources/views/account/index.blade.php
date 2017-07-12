@@ -49,7 +49,19 @@
         <h3>메인화면입니다.</h3>
     </div>
     <div class="col-md-6">
-        <button type="button" class="btn btn-primary">내역 입력</button>
+        {{-- 수입/지출 내역 입력 폼 --}}
+        <form class="form-inline" action="" method="post">
+            <select class="form-control" name="asset_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                @forelse ($assets as $asset)
+                    <option value="{{ $asset->id }}">{{ $asset->name }}</option>
+                @empty
+                    <option value="" selected disabled>자산등록필요</option>
+                @endforelse
+            </select>
+            <input class="form-control" type="text" name="description" value="" placeholder="내역 메모">
+            <input class="form-control" type="number" name="amount" value="" placeholder="금액">
+            <button type="button" class="btn btn-primary" {{ $asset_count == 0 ? 'disabled' : '' }}>내역 입력</button>
+        </form>
     </div>
 </div>
 <div class="row" style="margin-top:0.5em;">
