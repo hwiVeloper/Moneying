@@ -10,8 +10,8 @@
     <div style="margin-top:1em;"></div>
 
     @yield('contents')
-</div>
 
-@yield('scripts')
+    @yield('script')
+</div>
 
 @include('layouts.footer')

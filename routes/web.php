@@ -24,7 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        return view('account.index');
+        return redirect('/accounts');
     });
 });
 
@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('users', 'UsersController');
 
 /* AccountsController */
-// Route::resource('accounts', 'AccountsController');
+Route::get('accounts/{year?}/{month?}', 'AccountsController@index');
 Route::resource('accounts', 'AccountsController', ['middleware' => ['web', 'auth']]);
 
 /**

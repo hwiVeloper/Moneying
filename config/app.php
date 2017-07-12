@@ -181,7 +181,7 @@ return [
          * Additional Service Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        PCC\Calendar\CalendarServiceProvider::class,
     ],
 
     /*
@@ -232,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Calendar' => PCC\Calendar\Facades\Calendar::class
     ],
 
 ];

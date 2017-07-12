@@ -21,4 +21,5 @@
 //     el: '#app'
 // });
 
-window.$ = window.jQuery = require('jquery');
+window.$ = require('jquery');
+window.jQuery = require('jquery');

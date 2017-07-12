@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "52a78687cc030dc515af48b50951f7b2",
+    "content-hash": "f869a3a0bfec21c4d8b8fcd291451042",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2585,6 +2585,44 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2016-09-20T12:50:39+00:00"
+        },
+        {
+            "name": "vics80/calendar",
+            "version": "1.02",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vics80/LaravelCalendar.git",
+                "reference": "f4eaccf0fbebce009ffe802152347be23838227d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vics80/LaravelCalendar/zipball/f4eaccf0fbebce009ffe802152347be23838227d",
+                "reference": "f4eaccf0fbebce009ffe802152347be23838227d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4|~5",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Vics80\\Calendar": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Víctor Garcia Merediz",
+                    "email": "victorvgm@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 Calendar, based on gloudemans/calendar",
+            "keywords": [
+                "calendar",
+                "laravel"
+            ],
+            "time": "2015-05-12T10:36:46+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
