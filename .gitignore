@@ -10,7 +10,6 @@ app/storage/
 public/storage
 public/hot
 storage/*.key
-.env.example
 .env.*.php
 .env.php
 .env
