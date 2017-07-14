@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Calendar;
+use Illuminate\Support\Facades\Input;
 
 class AccountsController extends Controller
 {
@@ -16,10 +17,24 @@ class AccountsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($year = null, $month = null, $date = null)
     {
-        $year = request()->get('year') ?: date('Y');
-        $month = request()->get('month') ?: date('m');
+        if($year  == null) $year  = date('Y');
+        if($month == null) $month = date('m');
+        if($date  == null) $date  = date('d');
+
+        $ym      = $year.'-'.$month;
+        $ymd     = $year.'-'.$month.'-'.$date;
+        $red_ymd = $year.'/'.$month.'/'.$date;
+
+        $dates = array();
+
+        for($i = 0; $i <=  date('t', strtotime($ymd)); $i++)
+        {
+            array_push($dates, route('accounts.index'). '/' .date('Y') . "/" . date('m') . "/" . str_pad($i, 2, '0', STR_PAD_LEFT));
+        }
+
+        unset($dates[0]);
 
         $template = '
         {table_open}<table class="table cal-table" border="0" cellpadding="0" cellspacing="0">{/table_open}
@@ -39,8 +54,8 @@ class AccountsController extends Controller
         {cal_row_start}<tr>{/cal_row_start}
         {cal_cell_start}{/cal_cell_start}
 
-        {cal_cell_content}<td><a href="{content}">{day}</a></td>{/cal_cell_content}
-        {cal_cell_content_today}<td><div class="cal-highlight cal-today"><a href="{content}">{day}</a></div></td>{/cal_cell_content_today}
+        {cal_cell_content}<td><a class="cal-link" href="{content}">{day}</a></td>{/cal_cell_content}
+        {cal_cell_content_today}<td class="cal-today"><div><a href="{content}">{day}</a></div></td>{/cal_cell_content_today}
 
         {cal_cell_no_content}<td>{day}</td>{/cal_cell_no_content}
         {cal_cell_no_content_today}<td class="cal-today"><div class="cal-highlight">{day}</div></td>{/cal_cell_no_content_today}
@@ -56,21 +71,31 @@ class AccountsController extends Controller
         Calendar::initialize(array(
             'template' => $template,
             'show_next_prev' => true,
-            'segments' => false
+            'segments' => true,
+            'next_prev_url' => 'http://hwi.mismaven.kr/accounts'
         ));
 
-        $calendar = Calendar::generate($year, $month);
+        $calendar = Calendar::generate($year, $month, $dates);
 
+        $accounts = \App\Account::with('category', 'asset')
+                                ->where('date', $year.'-'.$month.'-'.$date)
+                                ->where('user_id', Auth::user()->id)
+                                ->get();
 
-        $accounts = \App\Account::where('date', $year.'-'.$month.'-')->get();
+                                // dd($accounts);
         $assets = \App\Asset::where('user_id', Auth::user()->id)->get();
         $asset_count = \App\Asset::where('user_id', Auth::user()->id)->count();
+        $categories = \App\Category::get();
 
         return view('account.index', compact(
             'calendar',
             'accounts',
             'assets',
-            'asset_count'
+            'asset_count',
+            'categories',
+            'ymd',
+            'red_ymd',
+            'date'
         ));
     }
 
@@ -92,7 +117,15 @@ class AccountsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $account = \App\Account::create($request->all());
+
+        // if fail
+        if (! $account) {
+          return back()->with('flash_message', '오류가 발생했습니다. 관리자에게 문의해 주세요.')
+                       ->withInput();
+        }
+
+        return redirect('accounts/' . Input::get('red_ymd'))->with('flash_message', '저장되었습니다.');
     }
 
     /**
