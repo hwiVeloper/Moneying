@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Calendar;
+use Response;
 use Illuminate\Support\Facades\Input;
 
 class AccountsController extends Controller
@@ -85,7 +86,7 @@ class AccountsController extends Controller
                                 // dd($accounts);
         $assets = \App\Asset::where('user_id', Auth::user()->id)->get();
         $asset_count = \App\Asset::where('user_id', Auth::user()->id)->count();
-        $categories = \App\Category::get();
+        $categories = \App\Category::where('type', 1)->get();
 
         return view('account.index', compact(
             'calendar',
@@ -171,5 +172,16 @@ class AccountsController extends Controller
     public function destroy($id)
     {
         echo "destroy";
+    }
+
+    public function changeType(Request $request)
+    {
+        $response = "";
+        $categories = \App\Category::where('type', Input::get('type'))
+                                   ->get();
+        foreach ($categories as $category) {
+            $response .= "<option value='$category->id'>$category->name</option>"; 
+        }
+        return Response::make($response);
     }
 }

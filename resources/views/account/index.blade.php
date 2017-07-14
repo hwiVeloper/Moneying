@@ -10,7 +10,23 @@
         }
     });
     $(document).ready(function() {
-        $('#collpseOne').collapse();
+        $('#inc_exp').on('change', function() {
+            $.ajax({
+                type: 'post',
+                dataType: 'html',
+                url: '{{ route("accounts.changeType") }}',
+                data: {"_token": "{{ csrf_token() }}",
+                       "type": $(this).val()
+                },
+                success: function (data) {
+                    console.log(data);
+                    $('#category').empty().append(data);
+                },
+                error: function (request, status, error) {
+                    console.log('code: '+request.status+"\n"+'message: '+request.responseText+"\n"+'error: '+error);
+                }
+            });
+        });
     });
     </script>
 @stop
@@ -34,7 +50,7 @@
                 <div class="card-header" role="tab" id="headingOne">
                     <h5 class="mb-0">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            내역 입력
+                            <i class="fa fa-pencil">&nbsp;</i>내역 입력
                         </a>
                     </h5>
                 </div>
@@ -46,7 +62,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="type">구분</label>
                                 <div class="col-9">
-                                    <select class="form-control" name="type" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <select id="inc_exp" class="form-control" name="type" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         <option value="1">수입</option>
                                         <option value="2">지출</option>
                                     </select>
@@ -55,7 +71,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="category_id">카테고리</label>
                                 <div class="col-9">
-                                    <select class="form-control" name="category_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <select id="category" class="form-control" name="category_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         @forelse ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @empty

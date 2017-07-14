@@ -32,8 +32,12 @@ Route::middleware('auth')->group(function () {
 Route::resource('users', 'UsersController');
 
 /* AccountsController */
-Route::get('accounts/{year?}/{month?}/{date?}', 'AccountsController@index', function($year = null, $month = null, $date = null) {});
 Route::resource('accounts', 'AccountsController', ['middleware' => ['web', 'auth']]);
+Route::get('accounts/{year?}/{month?}/{date?}', 'AccountsController@index', function($year = null, $month = null, $date = null) {});
+Route::post('accounts/changeType', [
+    'as'   => 'accounts.changeType',
+    'uses' => 'AccountsController@changeType'
+]);
 
 /**
  * Socialite
