@@ -30,7 +30,8 @@ mix
     'resources/assets/css/font-awesome.min.css',
     'resources/assets/css/font.css',
     'resources/assets/css/navigation.css',
-    'resources/assets/css/register_login.css'
+    'resources/assets/css/register_login.css',
+    'resources/assets/css/account_calendar.css'
 ], 'public/css/app.css')
 .version()
 .browserSync({
