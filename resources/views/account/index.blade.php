@@ -93,8 +93,8 @@
                         <form action="{{ route('accounts.store') }}" method="post">
                             {!! csrf_field() !!}
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="type">구분</label>
-                                <div class="col-10">
+                                <label class="col-3 col-form-label" for="type">구분</label>
+                                <div class="col-9">
                                     <select class="form-control" name="type" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         <option value="1">수입</option>
                                         <option value="2">지출</option>
@@ -102,8 +102,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="category_id">카테고리</label>
-                                <div class="col-10">
+                                <label class="col-3 col-form-label" for="category_id">카테고리</label>
+                                <div class="col-9">
                                     <select class="form-control" name="category_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         @forelse ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -114,8 +114,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="asset_id">자산구분</label>
-                                <div class="col-10">
+                                <label class="col-3 col-form-label" for="asset_id">자산구분</label>
+                                <div class="col-9">
                                     <select class="form-control" name="asset_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         @forelse ($assets as $asset)
                                             <option value="{{ $asset->id }}">{{ $asset->name }}</option>
@@ -126,20 +126,20 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="description">내역</label>
-                                <div class="col-10">
+                                <label class="col-3 col-form-label" for="description">내역</label>
+                                <div class="col-9">
                                     <input class="form-control" type="text" name="description" value="" placeholder="내역 메모" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="amount">금액</label>
-                                <div class="col-10">
+                                <label class="col-3 col-form-label" for="amount">금액</label>
+                                <div class="col-9">
                                     <input class="form-control" type="number" name="amount" value="" placeholder="금액" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for=""></label>
-                                <div class="col-10">
+                                <label class="col-3 col-form-label" for=""></label>
+                                <div class="col-9">
                                     <button type="submit" class="btn btn-primary btn-block" {{ $asset_count == 0 ? 'disabled' : '' }}>내역 입력</button>
                                 </div>
                             </div>
