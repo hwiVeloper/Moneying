@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Calendar;
 use Response;
-use Illuminate\Support\Facades\Input;
+use Input;
 
 class AccountsController extends Controller
 {
@@ -101,16 +101,6 @@ class AccountsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //
-    // }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -180,7 +170,7 @@ class AccountsController extends Controller
         $categories = \App\Category::where('type', Input::get('type'))
                                    ->get();
         foreach ($categories as $category) {
-            $response .= "<option value='$category->id'>$category->name</option>"; 
+            $response .= "<option value='$category->id'>$category->name</option>";
         }
         return Response::make($response);
     }

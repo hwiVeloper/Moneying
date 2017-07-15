@@ -42,3 +42,8 @@
 .table-sm td {
     vertical-align: middle;
 }
+
+.amountCell {
+    text-align:right;
+    padding-right: 1em!important;
+}
