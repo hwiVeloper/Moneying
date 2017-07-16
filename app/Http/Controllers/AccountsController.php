@@ -83,7 +83,7 @@ class AccountsController extends Controller
                                 ->where('user_id', Auth::user()->id)
                                 ->get();
 
-                                // dd($accounts);
+        dd($accounts);
         $assets = \App\Asset::where('user_id', Auth::user()->id)->get();
         $asset_count = \App\Asset::where('user_id', Auth::user()->id)->count();
         $categories = \App\Category::where('type', 1)->get();

@@ -42,6 +42,11 @@ Route::post('accounts/changeType', [
     'uses' => 'AccountsController@changeType'
 ]);
 
+/* AssetController */
+Route::resource('assets', 'AssetsController',
+                ['middleware' => ['web', 'auth']]
+);
+
 /**
  * Socialite
  */

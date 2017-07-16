@@ -30,8 +30,8 @@
     </style>
 </head>
 <body id="login-page">
-    <video id="bg-video" preload="auto" autoplay="true" loop="loop" volume="0" poster="pencil_down.jpg">
-        <source src="video/pencil_down.mp4" type="video/mp4" />
+    <video id="bg-video" preload="auto" autoplay="true" loop="loop" volume="0" poster="video/pencil_down.jpg">
+        {{-- <source src="video/pencil_down.mp4" type="video/mp4" /> --}}
         <source src="video/pencil_down.webm" type="video/webm" />
     </video>
     <div class="container-fluid">

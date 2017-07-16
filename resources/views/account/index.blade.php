@@ -134,7 +134,7 @@
                         <td class="hidden-md-down">{{ $account->category->name }}</td>
                         <td>{{ $account->asset->name }}</td>
                         <td>{{ $account->description }}</td>
-                        <td class="amountCell">{{ $account->amount }}</td>
+                        <td class="amountCell">{{ number_format($account->amount) }}</td>
                     </tr>
                 @empty
                     <tr>

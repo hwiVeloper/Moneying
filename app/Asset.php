@@ -9,11 +9,16 @@ class Asset extends Model
     protected $fillable = [
         'type',
         'name',
+        'underlying',
         'amount',
         'user_id'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function assetType() {
+        return $this->belongsTo(AssetType::class, 'type');
     }
 }
