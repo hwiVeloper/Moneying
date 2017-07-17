@@ -20,10 +20,6 @@ class AccountsController extends Controller
      */
     public function index($year = null, $month = null, $date = null)
     {
-        if($year  == null) $year  = date('Y');
-        if($month == null) $month = date('m');
-        if($date  == null) $date  = date('d');
-
         $ym      = $year.'-'.$month;
         $ymd     = $year.'-'.$month.'-'.$date;
         $red_ymd = $year.'/'.$month.'/'.$date;
@@ -83,7 +79,6 @@ class AccountsController extends Controller
                                 ->where('user_id', Auth::user()->id)
                                 ->get();
 
-        dd($accounts);
         $assets = \App\Asset::where('user_id', Auth::user()->id)->get();
         $asset_count = \App\Asset::where('user_id', Auth::user()->id)->count();
         $categories = \App\Category::where('type', 1)->get();

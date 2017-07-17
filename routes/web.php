@@ -11,16 +11,12 @@
 |
 */
 
-/* Index  */
+/********** Index  **********/
 Route::get('/', function () {
     return redirect(route('accounts.index'));
 });
 
-// Route::get('login', function() [
-//     return view('auth.login')
-// ]);
-
-/* Auth */
+/********** Auth **********/
 Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
@@ -28,21 +24,29 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-/* UsersController */
+/********** UsersController **********/
 Route::resource('users', 'UsersController');
 
-/* AccountsController */
+/********** AccountsController **********/
 Route::resource('accounts', 'AccountsController',
                 ['except' => ['create']],
                 ['middleware' => ['web', 'auth']]
 );
-Route::get('accounts/{year?}/{month?}/{date?}', 'AccountsController@index', function($year = null, $month = null, $date = null) {});
+Route::get('accounts/{year?}/{month?}/{date?}',
+    'AccountsController@index',
+    ['middleware' => ['web', 'auth']],
+    function($year = null, $month = null, $date = null) {
+        if($year  == null) $year  = date('Y');
+        if($month == null) $month = date('m');
+        if($date  == null) $date  = date('d');
+    }
+);
 Route::post('accounts/changeType', [
     'as'   => 'accounts.changeType',
     'uses' => 'AccountsController@changeType'
 ]);
 
-/* AssetController */
+/********** AssetController **********/
 Route::resource('assets', 'AssetsController',
                 ['middleware' => ['web', 'auth']]
 );
