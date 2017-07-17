@@ -17,7 +17,7 @@ class CreateAssetsTable extends Migration
             $table->increments('id');
             $table->integer('type')->length(5)->unsigned();
             $table->string('name', 100);
-            $table->decimal('amount', 20, 0)->unsigned();
+            $table->decimal('amount', 20, 0)->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
 

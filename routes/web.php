@@ -48,7 +48,8 @@ Route::post('accounts/changeType', [
 
 /********** AssetController **********/
 Route::resource('assets', 'AssetsController',
-                ['middleware' => ['web', 'auth']]
+    ['only' => ['index', 'store', 'destroy']],
+    ['middleware' => ['web', 'auth']]
 );
 
 /**

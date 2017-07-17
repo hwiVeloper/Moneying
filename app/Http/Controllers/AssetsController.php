@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Asset;
+use App;
 use Auth;
+use Validator;
 
 class AssetsController extends Controller
 {
+    public function __construct() {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +20,15 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        $assets = Asset::with('assetType', 'user')
+        $assets = \App\Asset::with('assetType', 'user')
                             ->where('user_id', Auth::user()->id)
                             ->get();
-                            
+
+        $types = \App\AssetType::get();
+
         return view('asset.index', compact(
-            'assets'
+            'assets',
+            'types'
         ));
     }
 
@@ -43,7 +50,21 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validate($request, App\Asset::$rules);
+
+        if ($validator) {
+            return redirect('assets')->withErrors($validator)->withInput();
+        }
+
+        $asset = \App\Asset::create($request->all());
+
+        // if fail
+        if (! $asset) {
+            return back()->with('flash_message', '오류가 발생했습니다. 관리자에게 문의해 주세요.')
+                         ->withInput();
+        }
+
+        return redirect('assets')->with('flash_message', '등록되었습니다.');
     }
 
     /**
@@ -88,6 +109,8 @@ class AssetsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        App\Asset::findOrFail($id)->delete();
+
+        return redirect(route('assets.index'))->with('flash_message', '삭제되었습니다.');
     }
 }

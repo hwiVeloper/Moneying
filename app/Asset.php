@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
+    public static $rules = [
+        'type' => ['required'],
+        'name' => ['required'],
+        'underlying' => ['required', 'min:2']
+    ];
+
     protected $fillable = [
         'type',
         'name',

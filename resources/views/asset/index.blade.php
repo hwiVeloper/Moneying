@@ -7,6 +7,10 @@
     .number-cell {
         text-align: right;
     }
+
+    span {
+        color: red;
+    }
 </style>
 @endsection
 
@@ -28,6 +32,7 @@
                     <th>이름</th>
                     <th>기초자산</th>
                     <th>잔액</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,10 +42,17 @@
                         <td>{{ $asset->name }}</td>
                         <td class="number-cell">{{ number_format($asset->underlying) }}</td>
                         <td class="number-cell">{{ number_format($asset->amount) }}</td>
+                        <td>
+                            <form action="{{ route('assets.destroy', $asset->id) }}" method="post">
+                                {!! csrf_field() !!}
+                                {!! method_field('DELETE') !!}
+                                <button type="submit" class="btn btn-danger">삭제</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4">등록된 자산이 없습니다. 등록해주세요.</td>
+                        <td colspan="5">등록된 자산이 없습니다. 등록해주세요.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -48,6 +60,43 @@
     </div>
     <div class="col-md-6">
         {{-- 자산 등록 --}}
+        <form class="" action="#" method="post">
+            {!! csrf_field() !!}
+            <div class="form-group row">
+                <label class="col-3 col-form-label">종류</label>
+                <div class="col-9">
+                    <select class="form-control" name="type">
+                        @forelse ($types as $type)
+                            <option value="{{ $type->id }}" {{ old('type') == $type->id ? 'selected': '' }}>{{ $type->name }}</option>
+                        @empty
+                            {{-- Nothing --}}
+                        @endforelse
+                    </select>
+                    {!! $errors->first('type', '<span>:message</span>') !!}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-3 col-form-label">이름</label>
+                <div class="col-9">
+                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" required>
+                    {!! $errors->first('name', '<span>:message</span>') !!}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-3 col-form-label">기초자산</label>
+                <div class="col-9">
+                    <input class="form-control" type="number" name="underlying" value="{{ old('underlying') }}" required>
+                    {!! $errors->first('underlying', '<span>:message</span>') !!}
+                </div>
+            </div>
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <div class="form-group row">
+                <label class="col-3 col-form-label"></label>
+                <div class="col-9">
+                    <button class="btn btn-primary btn-block" type="submit">등록</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 @stop
