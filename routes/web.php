@@ -35,11 +35,7 @@ Route::resource('accounts', 'AccountsController',
 Route::get('accounts/{year?}/{month?}/{date?}',
     'AccountsController@index',
     ['middleware' => ['web', 'auth']],
-    function($year = null, $month = null, $date = null) {
-        if($year  == null) $year  = date('Y');
-        if($month == null) $month = date('m');
-        if($date  == null) $date  = date('d');
-    }
+    function($year = null, $month = null, $date = null) {}
 );
 Route::post('accounts/changeType', [
     'as'   => 'accounts.changeType',

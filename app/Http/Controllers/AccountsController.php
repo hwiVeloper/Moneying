@@ -20,6 +20,10 @@ class AccountsController extends Controller
      */
     public function index($year = null, $month = null, $date = null)
     {
+        if($year  == null) $year  = date('Y');
+        if($month == null) $month = date('m');
+        if($date  == null) $date  = date('d');
+        
         $ym      = $year.'-'.$month;
         $ymd     = $year.'-'.$month.'-'.$date;
         $red_ymd = $year.'/'.$month.'/'.$date;

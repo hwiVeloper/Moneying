@@ -5,7 +5,7 @@
 @section('script')
     <script type="text/javascript">
     $('.cal-link').each(function() {
-        if ( $(this).html() == <?php echo $date; ?> ) {
+        if ( $(this).html() == {{ $date }} ) {
             $(this).parent().addClass('cal-selected');
         }
     });

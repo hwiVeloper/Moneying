@@ -43,7 +43,8 @@
                         <td class="number-cell">{{ number_format($asset->underlying) }}</td>
                         <td class="number-cell">{{ number_format($asset->amount) }}</td>
                         <td>
-                            <form action="{{ route('assets.destroy', $asset->id) }}" method="post">
+                            <form action="{{ route('assets.destroy', $asset->id) }}" method="post"
+                                onsubmit="return confirm('관련된 수입/지출 내역도 삭제됩니다. 계속하시겠습니까?')">
                                 {!! csrf_field() !!}
                                 {!! method_field('DELETE') !!}
                                 <button type="submit" class="btn btn-danger">삭제</button>

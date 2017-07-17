@@ -20,11 +20,23 @@ class Asset extends Model
         'user_id'
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        self::deleting(function ($value) {
+            $value->accounts()->delete();
+        });
+    }
+
     public function user() {
         return $this->belongsTo(User::class);
     }
 
     public function assetType() {
         return $this->belongsTo(AssetType::class, 'type');
+    }
+
+    public function accounts() {
+        return $this->hasMany(Account::class);
     }
 }
