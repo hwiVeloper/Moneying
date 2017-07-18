@@ -17,7 +17,7 @@
 @section('contents')
 <div class="row">
     <div class="col-md-12">
-        <h3>Asset 메인 페이지</h3>
+        <h3><i class="fa fa-money">&nbsp;</i>자산관리</h3>
     </div>
     <div class="col-md-6">
         {{-- 자산리스트 --}}

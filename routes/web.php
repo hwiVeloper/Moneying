@@ -48,6 +48,13 @@ Route::resource('assets', 'AssetsController',
     ['middleware' => ['web', 'auth']]
 );
 
+/********** DashboardController **********/
+Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
+    Route::get('/{method?}', [
+        'as'   => 'dashboard.index',
+        'uses' => 'DashboardController@index'
+    ]);
+});
 /**
  * Socialite
  */
