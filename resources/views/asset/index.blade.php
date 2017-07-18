@@ -7,10 +7,6 @@
     .number-cell {
         text-align: right;
     }
-
-    span {
-        color: red;
-    }
 </style>
 @endsection
 
@@ -73,21 +69,21 @@
                             {{-- Nothing --}}
                         @endforelse
                     </select>
-                    {!! $errors->first('type', '<span>:message</span>') !!}
+                    {!! $errors->first('type', '<span class="error">:message</span>') !!}
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-3 col-form-label">이름</label>
                 <div class="col-9">
                     <input class="form-control" type="text" name="name" value="{{ old('name') }}" required>
-                    {!! $errors->first('name', '<span>:message</span>') !!}
+                    {!! $errors->first('name', '<span class="error">:message</span>') !!}
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-3 col-form-label">기초자산</label>
                 <div class="col-9">
                     <input class="form-control" type="number" name="underlying" value="{{ old('underlying') }}" required>
-                    {!! $errors->first('underlying', '<span>:message</span>') !!}
+                    {!! $errors->first('underlying', '<span class="error">:message</span>') !!}
                 </div>
             </div>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">

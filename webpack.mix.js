@@ -31,7 +31,8 @@ mix
     'resources/assets/css/font.css',
     'resources/assets/css/navigation.css',
     'resources/assets/css/register_login.css',
-    'resources/assets/css/account_calendar.css'
+    'resources/assets/css/account_calendar.css',
+    'resources/assets/css/form.css'
 ], 'public/css/app.css')
 .version()
 .browserSync({

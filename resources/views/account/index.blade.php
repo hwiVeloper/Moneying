@@ -63,9 +63,10 @@
                                 <label class="col-3 col-form-label" for="type">구분</label>
                                 <div class="col-9">
                                     <select id="inc_exp" class="form-control" name="type" {{ $asset_count == 0 ? 'disabled' : '' }}>
-                                        <option value="1">수입</option>
-                                        <option value="2">지출</option>
+                                        <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>수입</option>
+                                        <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>지출</option>
                                     </select>
+                                    {!! $errors->first('type', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -73,11 +74,13 @@
                                 <div class="col-9">
                                     <select id="category" class="form-control" name="category_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         @forelse ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}"
+                                                {{ old('category_id' == $category->id ? 'selected' : '') }}>{{ $category->name }}</option>
                                         @empty
                                             {{-- nothing --}}
                                         @endforelse
                                     </select>
+                                    {!! $errors->first('category_id', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -85,23 +88,27 @@
                                 <div class="col-9">
                                     <select class="form-control" name="asset_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
                                         @forelse ($assets as $asset)
-                                            <option value="{{ $asset->id }}">{{ $asset->name }}</option>
+                                            <option value="{{ $asset->id }}"
+                                                {{ old('asset_id') == $asset->id ? 'selected' : '' }}>{{ $asset->name }}</option>
                                         @empty
                                             <option value="" selected>자산등록필요</option>
                                         @endforelse
                                     </select>
+                                    {!! $errors->first('asset_id', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="description">내역</label>
                                 <div class="col-9">
-                                    <input class="form-control" type="text" name="description" value="" placeholder="내역 메모" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <input class="form-control" type="text" name="description" value="{{ old('description') }}" placeholder="내역 메모" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    {!! $errors->first('description', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="amount">금액</label>
                                 <div class="col-9">
-                                    <input class="form-control" type="number" name="amount" value="" placeholder="금액" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <input class="form-control" type="number" name="amount" value="{{ old('description') }}" placeholder="금액" {{ $asset_count == 0 ? 'disabled' : '' }} required>
+                                    {!! $errors->first('amount', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">

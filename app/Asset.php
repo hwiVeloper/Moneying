@@ -26,6 +26,10 @@ class Asset extends Model
         self::deleting(function ($value) {
             $value->accounts()->delete();
         });
+
+        self::created(function ($value) {
+            self::where('id', $value->id)->update(['amount' => $value->underlying]);
+        });
     }
 
     public function user() {

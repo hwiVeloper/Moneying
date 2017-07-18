@@ -23,7 +23,7 @@ class AccountsController extends Controller
         if($year  == null) $year  = date('Y');
         if($month == null) $month = date('m');
         if($date  == null) $date  = date('d');
-        
+
         $ym      = $year.'-'.$month;
         $ymd     = $year.'-'.$month.'-'.$date;
         $red_ymd = $year.'/'.$month.'/'.$date;
@@ -107,6 +107,12 @@ class AccountsController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = $this->validate($request, \App\Account::$rules);
+
+        if ($validator) {
+            return redirect('assets')->withErrors($validator)->withInput();
+        }
+
         $account = \App\Account::create($request->all());
 
         // if fail
