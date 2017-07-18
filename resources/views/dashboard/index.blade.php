@@ -12,12 +12,14 @@
 
 @section('contents')
 <div class="row">
-    <h3>Dashboard</h3>
+    <div class="col-md-12">
+        <h3>Dashboard</h3>
+    </div>
     <div class="col-md-12">
         {{-- button area (yearly, monthly, weekly) --}}
     </div>
     <div class="col-md-12">
-        {{-- graph area --}}
+        {!! LaravelHighchart::display("dashboardCharts", $charts) !!}
     </div>
 </div>
 @endsection
