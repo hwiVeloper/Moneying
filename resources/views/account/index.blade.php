@@ -62,7 +62,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="type">구분</label>
                                 <div class="col-9">
-                                    <select id="inc_exp" class="form-control" name="type" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <select id="inc_exp" class="form-control" name="type" {{ $assets->count() == 0 ? 'disabled' : '' }}>
                                         <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>수입</option>
                                         <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>지출</option>
                                     </select>
@@ -72,7 +72,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="category_id">카테고리</label>
                                 <div class="col-9">
-                                    <select id="category" class="form-control" name="category_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <select id="category" class="form-control" name="category_id" {{ $assets->count() == 0 ? 'disabled' : '' }}>
                                         @forelse ($categories as $category)
                                             <option value="{{ $category->id }}"
                                                 {{ old('category_id' == $category->id ? 'selected' : '') }}>{{ $category->name }}</option>
@@ -86,7 +86,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="asset_id">자산구분</label>
                                 <div class="col-9">
-                                    <select class="form-control" name="asset_id" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <select class="form-control" name="asset_id" {{ $assets->count() == 0 ? 'disabled' : '' }}>
                                         @forelse ($assets as $asset)
                                             <option value="{{ $asset->id }}"
                                                 {{ old('asset_id') == $asset->id ? 'selected' : '' }}>{{ $asset->name }}</option>
@@ -100,21 +100,21 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="description">내역</label>
                                 <div class="col-9">
-                                    <input class="form-control" type="text" name="description" value="{{ old('description') }}" placeholder="내역 메모" {{ $asset_count == 0 ? 'disabled' : '' }}>
+                                    <input class="form-control" type="text" name="description" value="{{ old('description') }}" placeholder="내역 메모" {{ $assets->count() == 0 ? 'disabled' : '' }}>
                                     {!! $errors->first('description', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for="amount">금액</label>
                                 <div class="col-9">
-                                    <input class="form-control" type="number" name="amount" value="{{ old('description') }}" placeholder="금액" {{ $asset_count == 0 ? 'disabled' : '' }} required>
+                                    <input class="form-control" type="number" name="amount" value="{{ old('description') }}" placeholder="금액" {{ $assets->count() == 0 ? 'disabled' : '' }} required>
                                     {!! $errors->first('amount', '<span class="error">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-3 col-form-label" for=""></label>
                                 <div class="col-9">
-                                    <button type="submit" class="btn btn-primary btn-block" {{ $asset_count == 0 ? 'disabled' : '' }}>내역 입력</button>
+                                    <button type="submit" class="btn btn-primary btn-block" {{ $assets->count() == 0 ? 'disabled' : '' }}>내역 입력</button>
                                 </div>
                             </div>
                             {{-- hidden values --}}
@@ -132,7 +132,13 @@
                     </h5>
                 </div>
                 <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                    
+                    <div class="row">
+                        @forelse ($briefing as $brief)
+                            <p class="col-md-6 pt-3" style="text-align:center;">{{ ($brief->type == 1 ? '수입 : ' : '지출 : ') . number_format($brief->sum) }} 원</p>
+                        @empty
+                            <p class="col-md-12 mt-2 mb-2" style="text-align:center;">등록된 데이터가 없습니다.</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

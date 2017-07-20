@@ -87,15 +87,23 @@ class AccountsController extends Controller
         $asset_count = \App\Asset::where('user_id', Auth::user()->id)->count();
         $categories = \App\Category::where('type', 1)->get();
 
+        // 요약 (수입, 지출)
+        $briefing = \App\Account::select('type')
+            ->selectRaw('sum(amount) as sum')
+            ->where('user_id', Auth::user()->id)
+            ->where('date', 'like', $ym . '%')
+            ->groupBy('type')
+            ->get();
+            
         return view('account.index', compact(
             'calendar',
             'accounts',
             'assets',
-            'asset_count',
             'categories',
             'ymd',
             'red_ymd',
-            'date'
+            'date',
+            'briefing'
         ));
     }
 
