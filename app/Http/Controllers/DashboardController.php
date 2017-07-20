@@ -15,34 +15,44 @@ class DashboardController extends Controller
         //
     }
 
-    public function index($method = null) {
-        if ($method == null) $method = "monthly";
+    public function index(Request $request = null) {
+        if ( ! ( $request->isMethod('post') ) ) {
+            $type = 1;
+            $date = date('Y-m');
+            $method = 'monthly';
+        } else {
+            $input = $request->all();
 
-        $incomeChartsCategories = [];
-        $incomeChartsData = [];
-        $expenseChartsCategories = [];
-        $expenseChartsData = [];
+            $type = $input['type'];
+            $method = $input['method'];
+
+            $date = $method == 'monthly' ? $input['month'] : $input['week'];
+        }
 
         /* 수입 차트 */
-        $incomes = \App\Account::with('category')
+        $charts = \App\Account::with('category')
             ->select('category_id')
             ->selectRaw('sum(amount) as sum')
             ->where('user_id', Auth::user()->id)
-            ->where('type', 1)
+            ->where('type', $type)
+            ->where($method == 'monthly' ? DB::raw('DATE_FORMAT(date, "%Y-%m")') : DB::raw('DATE_FORMAT(date, "%Y-W%V")'), $date)
             ->groupBy('category_id')
             ->get();
+        $chartData = Lava::DataTable();
 
-        $incomeChartData = Lava::DataTable();
-
-        $incomeChartData->addStringColumn('카테고리')
+        $chartData->addStringColumn('카테고리')
             ->addNumberColumn('금액');
 
-        foreach ($incomes as $data) {
-            $incomeChartData->addRow(array($data->category->name, $data->sum));
+        foreach ($charts as $data) {
+            $chartData->addRow(array($data->category->name, $data->sum));
         }
 
-        $incomeChart = Lava::BarChart('income', $incomeChartData);
+        $dashboard = $charts->count() > 0 ? Lava::BarChart('dashboard', $chartData) : '';
 
-        return view('dashboard.index');
+        if( $request->isMethod('post') ){
+            return view('dashboard.index', compact('type', 'date', 'method', 'dashboard', 'charts'));
+        }
+
+        return view('dashboard.index', compact('type', 'date', 'method', 'dashboard', 'charts'));
     }
 }

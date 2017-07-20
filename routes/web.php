@@ -50,7 +50,11 @@ Route::resource('assets', 'AssetsController',
 
 /********** DashboardController **********/
 Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
-    Route::get('/{method?}', [
+    Route::get('/', [
+        'as'   => 'dashboard.index',
+        'uses' => 'DashboardController@index'
+    ]);
+    Route::post('/', [
         'as'   => 'dashboard.index',
         'uses' => 'DashboardController@index'
     ]);
