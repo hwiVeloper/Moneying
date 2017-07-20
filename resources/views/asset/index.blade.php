@@ -21,7 +21,8 @@
     </div>
     <div class="col-md-6">
         {{-- 자산리스트 --}}
-        <table class="table">
+        {{-- 큰화면용 --}}
+        <table class="table hidden-sm-down">
             <thead>
                 <tr>
                     <th>종류</th>
@@ -54,6 +55,30 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="list-group hidden-md-up mb-4">
+            @forelse ($assets as $asset)
+                <span href="#" class="list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ $asset->name }}</h5>
+                        <small class="text-muted">{{ $asset->assetType->name }}</small>
+                    </div>
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1">
+                            기초자산 : {{ number_format($asset->underlying) }} 원<br>
+                            잔액 : {{ number_format($asset->amount) }} 원
+                        </p>
+                        <form action="{{ route('assets.destroy', $asset->id) }}" method="post"
+                            onsubmit="return confirm('관련된 수입/지출 내역도 삭제됩니다. 계속하시겠습니까?')">
+                            {!! csrf_field() !!}
+                            {!! method_field('DELETE') !!}
+                            <button type="submit" class="btn btn-danger btn-sm">삭제</button>
+                        </form>
+                    </div>
+                </span>
+            @empty
+
+            @endforelse
+        </div>
     </div>
     <div class="col-md-6">
         {{-- 자산 등록 --}}

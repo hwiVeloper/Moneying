@@ -110,7 +110,7 @@ class AccountsController extends Controller
         $validator = $this->validate($request, \App\Account::$rules);
 
         if ($validator) {
-            return redirect('assets')->withErrors($validator)->withInput();
+            return redirect('assets')->withErrors($validator)->with('flash_message', '오류가 발생했습니다. 관리자에게 문의해 주세요.')->withInput();
         }
 
         $account = \App\Account::create($request->all());

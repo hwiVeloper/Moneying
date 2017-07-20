@@ -182,7 +182,7 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         PCC\Calendar\CalendarServiceProvider::class,
-        Oblagio\Highcharts\Provider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
     ],
 
     /*
@@ -235,7 +235,7 @@ return [
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Calendar' => PCC\Calendar\Facades\Calendar::class,
-        'LaravelHighchart' => Oblagio\Highcharts\Facade::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
     ],
 
 ];
