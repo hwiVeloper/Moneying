@@ -47,7 +47,9 @@ class DashboardController extends Controller
             $chartData->addRow(array($data->category->name, $data->sum));
         }
 
-        $dashboard = $charts->count() > 0 ? Lava::BarChart('dashboard', $chartData) : '';
+        $dashboard = $charts->count() > 0 ? Lava::ColumnChart('dashboard', $chartData, [
+            'height' => 400,
+            ]) : '';
 
         if( $request->isMethod('post') ){
             return view('dashboard.index', compact('type', 'date', 'method', 'dashboard', 'charts'));

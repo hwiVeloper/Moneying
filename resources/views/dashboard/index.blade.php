@@ -47,6 +47,8 @@
             $('#weekLabel').hide();
             $('#week').hide();
             $('#week').attr('disabled', true);
+
+            $('#month').val('{{ isset($month) ? $month : date('Y-m') }}');
         } else {
             $('#monthLabel').hide();
             $('#month').hide();
@@ -55,6 +57,8 @@
             $('#weekLabel').show();
             $('#week').show();
             $('#week').attr('disabled', false);
+
+            $('#week').val('{{ isset($week) ? $month : date('Y-\WW') }}');
         }
     }
     </script>
@@ -89,5 +93,5 @@
     </div>
 </div>
 
-{!! $charts->count() > 0 ? Lava::render('BarChart', 'dashboard', 'dashboard') : '' !!}
+{!! $charts->count() > 0 ? Lava::render('ColumnChart', 'dashboard', 'dashboard') : '' !!}
 @endsection

@@ -39,7 +39,7 @@ $( document ).ready(function() {
         <a class="navbar-side-link" href="{{ url('/') }}"><li class="navbar-side-item"><i class="fa fa-home fa-lg fa-fw"></i>&nbsp;홈</li></a>
         <a class="navbar-side-link" href="{{ url('dashboard') }}"><li class="navbar-side-item"><i class="fa fa-dashboard fa-lg fa-fw"></i>&nbsp;요약</li></a>
         <a class="navbar-side-link" href="{{ url('assets') }}"><li class="navbar-side-item"><i class="fa fa-money fa-lg fa-fw"></i>&nbsp;자산관리</li></a>
-        <a class="navbar-side-link" href="#"><li class="navbar-side-item"><i class="fa fa-cog fa-lg fa-fw"></i>&nbsp;설정</li></a>
+        <a class="navbar-side-link" href="#"><li class="navbar-side-item"><i class="fa fa-cog fa-lg fa-fw"></i>&nbsp;설정 (준비중))</li></a>
 
         <a id="logout-btn" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw">&nbsp;</i>로그아웃</a>
