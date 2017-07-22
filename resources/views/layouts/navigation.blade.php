@@ -22,14 +22,13 @@ $( document ).ready(function() {
     });
 });
 </script>
-
 <nav class="navbar sticky-top navbar-inverse bg-moneying" role="navigation">
     <button class="navbar-toggler" id="navbarSideButton" type="button">
         <i class="fa fa-bars"></i>
     </button>
+    @if (!Auth::guest())
     <!-- 사이드바 내용 시작 -->
     <ul class="navbar-side reveal" id="navbarSide">
-        @if (!Auth::guest())
         <li id="profile" class="navbar-side-item">
             <img src="{{ Auth::user()->avatar }}" alt="" style="max-height:100px">
             <p class="profile-name">{{ Auth::user()->name }}</p>
@@ -46,8 +45,8 @@ $( document ).ready(function() {
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
-        @endif
     </ul>
     <!-- 사이드바 내용 끝 -->
+    @endif
 </nav>
 <div id="overlay"></div>
